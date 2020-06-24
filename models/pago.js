@@ -3,7 +3,7 @@ const Afiliado = require('./afiliado');
 const {Schema} = mongoose;
 
 const PagoSchema = new Schema({
-    afiliado:{type: Afiliado, required:true},
+    afiliado:{type: Schema.Types.ObjectId, ref: Afiliado},
     fecha:{type: Date, required:true},
     monto:{type:Number, required:true},
     año:{type:Number, required:true},

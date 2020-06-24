@@ -6,7 +6,7 @@ const ServicioSchema = new Schema({
     nombre:{type: String, required:true},
     imagen:{type: String, required:true},
     activo:{type:Boolean, required:true},
-    afiliadosInsc:{type:[Afiliado.schema], required:false}
+    afiliadosInsc:{type:[Schema.Types.ObjectId], required:false}
     //afiliadosInsc:{type:[Afiliado.schema], required:false} //Composicion
 })
 

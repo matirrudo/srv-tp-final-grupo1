@@ -1,10 +1,9 @@
 const mongoose = require('mongoose');
-const Afiliado = require('./afiliado');
 const Usuario = require('./usuario');
 const {Schema} = mongoose;
 
 const NovedadSchema = new Schema({
-    usuario:{type:Usuario, required:true},
+    usuario:{type: Schema.Types.ObjectId, ref: Usuario},
     texto:{type: String, required:true},
     estado:{type:String, required:true}
 })

@@ -9,7 +9,7 @@ usuarioCtrl.getUsuarios = async (req, res) => {
 
 usuarioCtrl.createUsuario = async (req, res) => {
     console.log(req.body);
-    const usuario = new Usuario (req.body);
+    const usuario = new Usuario(req.body);
     await usuario.save();
     res.json({
         'status': 'Usuario saved'
@@ -22,16 +22,47 @@ usuarioCtrl.getUsuario = async (req, res) => {
 }
 
 usuarioCtrl.editUsuario = async (req, res) => {
-    const usuario =  new Usuario (req.body);
-    await Usuario.findByIdAndUpdate(req.params.id, {$set: usuario}, {new: true});
+    const usuario = new Usuario(req.body);
+    await Usuario.findByIdAndUpdate(req.params.id, { $set: usuario }, { new: true });
     res.json({
         'status': 'Usuario updated'
     });
 }
-usuarioCtrl.deleteUsuario = async (req, res)=>{
+usuarioCtrl.deleteUsuario = async (req, res) => {
     await Usuario.findByIdAndRemove(req.params.id)
     res.json({
         status: 'Usuario removed'
     });
 }
-module.exports= usuarioCtrl;
+
+usuarioCtrl.loginUsuario = async (req, res) => {
+    console.log("login user: "+req.body);
+    //defino los criterios de busqueda en base al usuario y password recibidos
+    const criteria = {
+        usuario: req.body.usuario,
+        password: req.body.password
+    }
+    //el método findOne retorna un objeto que cumpla con los criterios de busqueda
+    Usuario.findOne(criteria, function (err, user) {
+        if (err) {
+            res.json({
+                status: 0,
+                message: 'error'
+            })
+        };
+        if (!user) {
+            res.json({
+                status: 0,
+                message: "not found"
+            })
+        } else {
+            res.json({
+                status: 1,
+                message: "success",
+                usuario: user.usuario,
+                perfil: user.perfil
+            });
+        }
+    })
+}
+module.exports = usuarioCtrl;

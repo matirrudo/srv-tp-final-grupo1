@@ -37,10 +37,11 @@ usuarioCtrl.deleteUsuario = async (req, res) => {
 
 usuarioCtrl.loginUsuario = async (req, res) => {
     console.log("login user: "+req.body);
-    //defino los criterios de busqueda en base al usuario y password recibidos
+    //defino los criterios de busqueda en base al usuario, password recibidos y activo
     const criteria = {
         usuario: req.body.usuario,
-        password: req.body.password
+        password: req.body.password,
+        activo: true
     }
     //el método findOne retorna un objeto que cumpla con los criterios de busqueda
     Usuario.findOne(criteria, function (err, user) {

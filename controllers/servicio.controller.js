@@ -3,7 +3,7 @@ const Servicio = require('../models/servicio');
 const servicioCtrl = {}
 
 servicioCtrl.getServicios = async (req, res) => {
-    servicios = await Servicio.find().populate("servicio");
+    servicios = await Servicio.find().populate("afiliadosInsc");
     res.json(servicios);
 }
 
@@ -17,7 +17,7 @@ servicioCtrl.createServicio = async (req, res) => {
 }
 
 servicioCtrl.getServicio = async (req, res) => {
-    const servicio = await Servicio.findById(req.params.id).populate("servicio");
+    const servicio = await Servicio.findById(req.params.id).populate("afiliadosInsc");
     res.json(servicio);
 }
 

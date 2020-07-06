@@ -3,7 +3,7 @@ const Noticia = require('../models/noticia');
 const noticiaCtrl = {}
 
 noticiaCtrl.getNoticias = async (req, res) => {
-    noticias = await Noticia.find().populate("noticia");
+    noticias = await Noticia.find().populate("usuario");
     res.json(noticias);
 }
 
@@ -17,7 +17,7 @@ noticiaCtrl.createNoticia = async (req, res) => {
 }
 
 noticiaCtrl.getNoticia = async (req, res) => {
-    const noticia = await Noticia.findById(req.params.id).populate("noticia");
+    const noticia = await Noticia.findById(req.params.id).populate("usuario");
     res.json(noticia);
 }
 

@@ -3,7 +3,7 @@ const Usuario = require('../models/usuario');
 const usuarioCtrl = {}
 
 usuarioCtrl.getUsuarios = async (req, res) => {
-    usuarios = await Usuario.find().populate("usuario");
+    usuarios = await Usuario.find();
     res.json(usuarios);
 }
 
@@ -17,7 +17,7 @@ usuarioCtrl.createUsuario = async (req, res) => {
 }
 
 usuarioCtrl.getUsuario = async (req, res) => {
-    const usuario = await Usuario.findById(req.params.id).populate("usuario");
+    const usuario = await Usuario.findById(req.params.id);
     res.json(usuario);
 }
 
@@ -61,7 +61,8 @@ usuarioCtrl.loginUsuario = async (req, res) => {
                 status: 1,
                 message: "success",
                 usuario: user.usuario,
-                perfil: user.perfil
+                perfil: user.perfil,
+                usuarioCompleto:user
             });
         }
     })

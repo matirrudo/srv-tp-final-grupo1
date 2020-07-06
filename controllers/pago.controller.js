@@ -3,7 +3,7 @@ const Pago = require('../models/pago');
 const pagoCtrl = {}
 
 pagoCtrl.getPagos = async (req, res) => {
-    pagos = await Pago.find().populate("pago");
+    pagos = await Pago.find().populate("afiliado");
     res.json(pagos);
 }
 
@@ -17,7 +17,7 @@ pagoCtrl.createPago = async (req, res) => {
 }
 
 pagoCtrl.getPago = async (req, res) => {
-    const pago = await Pago.findById(req.params.id).populate("pago");
+    const pago = await Pago.findById(req.params.id).populate("afiliado");
     res.json(pago);
 }
 

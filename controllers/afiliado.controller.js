@@ -3,7 +3,7 @@ const Afiliado = require('../models/afiliado');
 const afiliadoCtrl = {}
 
 afiliadoCtrl.getAfiliados = async (req, res) => {
-    afiliados = await Afiliado.find().populate("afiliado");
+    afiliados = await Afiliado.find();
     res.json(afiliados);
 }
 
@@ -17,7 +17,7 @@ afiliadoCtrl.createAfiliado = async (req, res) => {
 }
 
 afiliadoCtrl.getAfiliado = async (req, res) => {
-    const afiliado = await Afiliado.findById(req.params.id).populate("afiliado");
+    const afiliado = await Afiliado.findById(req.params.id);
     res.json(afiliado);
 }
 

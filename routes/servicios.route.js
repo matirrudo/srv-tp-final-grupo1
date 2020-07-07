@@ -5,13 +5,14 @@ const router = express.Router();
 
 //definiendo controlador para el manejo de CRUD
 const servicioCtrl = require('../controllers/servicio.controller');
+const authCtrl = require('../controllers/auth.controller');
 
 // definiendo rutas
-router.get('/', servicioCtrl.getServicios);
-router.post('/', servicioCtrl.createServicio);
-router.get('/:id', servicioCtrl.getServicio);
-router.put('/:id', servicioCtrl.editServicio);
-router.delete('/:id', servicioCtrl.deleteServicio);
+router.get('/',authCtrl.verifyToken , servicioCtrl.getServicios);
+router.post('/',authCtrl.verifyToken , servicioCtrl.createServicio);
+router.get('/:id',authCtrl.verifyToken , servicioCtrl.getServicio);
+router.put('/:id',authCtrl.verifyToken , servicioCtrl.editServicio);
+router.delete('/:id',authCtrl.verifyToken , servicioCtrl.deleteServicio);
 
 //exportacion del modulo de rutas
 module.exports = router;

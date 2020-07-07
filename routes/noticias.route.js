@@ -5,13 +5,14 @@ const router = express.Router();
 
 //definiendo controlador para el manejo de CRUD
 const noticiaCtrl = require('../controllers/noticia.controller');
+const authCtrl = require('../controllers/auth.controller');
 
 // definiendo rutas
-router.get('/', noticiaCtrl.getNoticias);
-router.post('/', noticiaCtrl.createNoticia);
-router.get('/:id', noticiaCtrl.getNoticia);
-router.put('/:id', noticiaCtrl.editNoticia);
-router.delete('/:id', noticiaCtrl.deleteNoticia);
+router.get('/',noticiaCtrl.getNoticias);
+router.post('/',authCtrl.verifyToken , noticiaCtrl.createNoticia);
+router.get('/:id',authCtrl.verifyToken , noticiaCtrl.getNoticia);
+router.put('/:id',authCtrl.verifyToken , noticiaCtrl.editNoticia);
+router.delete('/:id',authCtrl.verifyToken , noticiaCtrl.deleteNoticia);
 
 //exportacion del modulo de rutas
 module.exports = router;

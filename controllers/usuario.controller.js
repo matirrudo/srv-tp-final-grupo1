@@ -1,4 +1,5 @@
 const Usuario = require('../models/usuario');
+const jwt = require('jsonwebtoken');
 
 const usuarioCtrl = {}
 
@@ -57,12 +58,14 @@ usuarioCtrl.loginUsuario = async (req, res) => {
                 message: "not found"
             })
         } else {
+            const token= jwt.sign({id:user._id}, "pysw");
             res.json({
                 status: 1,
                 message: "success",
                 usuario: user.usuario,
                 perfil: user.perfil,
-                usuarioCompleto:user
+                usuarioCompleto:user,
+                token:token
             });
         }
     })

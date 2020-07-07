@@ -5,13 +5,14 @@ const router = express.Router();
 
 //definiendo controlador para el manejo de CRUD
 const afiliadoCtrl = require('../controllers/afiliado.controller');
+const authCtrl = require('../controllers/auth.controller');
 
 // definiendo rutas
-router.get('/', afiliadoCtrl.getAfiliados);
-router.post('/', afiliadoCtrl.createAfiliado);
-router.get('/:id', afiliadoCtrl.getAfiliado);
-router.put('/:id', afiliadoCtrl.editAfiliado);
-router.delete('/:id', afiliadoCtrl.deleteAfiliado);
+router.get('/',authCtrl.verifyToken, afiliadoCtrl.getAfiliados);
+router.post('/',authCtrl.verifyToken, afiliadoCtrl.createAfiliado);
+router.get('/:id',authCtrl.verifyToken, afiliadoCtrl.getAfiliado);
+router.put('/:id',authCtrl.verifyToken, afiliadoCtrl.editAfiliado);
+router.delete('/:id',authCtrl.verifyToken, afiliadoCtrl.deleteAfiliado);
 
 //exportacion del modulo de rutas
 module.exports = router;

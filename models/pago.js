@@ -6,8 +6,8 @@ const PagoSchema = new Schema({
     afiliado:{type: Schema.Types.ObjectId, ref: Afiliado},
     fecha:{type: Date, required:true},
     monto:{type:Number, required:true},
-    año:{type:Number, required:true},
-    mes:{type:Number, required:true}
+    year:{type:Number, required:true},
+    mes:{type:String, required:true}
 })
 
 

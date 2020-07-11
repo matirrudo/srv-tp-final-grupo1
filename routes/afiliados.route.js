@@ -10,6 +10,7 @@ const authCtrl = require('../controllers/auth.controller');
 // definiendo rutas
 router.get('/',authCtrl.verifyToken, afiliadoCtrl.getAfiliados);
 router.post('/',authCtrl.verifyToken, afiliadoCtrl.createAfiliado);
+router.post('/buscar',authCtrl.verifyToken, afiliadoCtrl.buscarAfiliado);
 router.get('/:id',authCtrl.verifyToken, afiliadoCtrl.getAfiliado);
 router.put('/:id',authCtrl.verifyToken, afiliadoCtrl.editAfiliado);
 router.delete('/:id',authCtrl.verifyToken, afiliadoCtrl.deleteAfiliado);

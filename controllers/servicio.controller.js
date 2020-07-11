@@ -7,6 +7,12 @@ servicioCtrl.getServicios = async (req, res) => {
     res.json(servicios);
 }
 
+servicioCtrl.getServiciosActivos = async (req, res) => {
+    const criteria = { activo: true }
+    servicios = await Servicio.find(criteria).populate("afiliadosInsc");
+    res.json(servicios);
+}
+
 servicioCtrl.createServicio = async (req, res) => {
     console.log(req.body);
     const servicio = new Servicio (req.body);

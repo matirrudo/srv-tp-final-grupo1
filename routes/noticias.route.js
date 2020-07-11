@@ -9,6 +9,7 @@ const authCtrl = require('../controllers/auth.controller');
 
 // definiendo rutas
 router.get('/',noticiaCtrl.getNoticias);
+router.get('/activas',noticiaCtrl.getNoticiasActivas);
 router.post('/',authCtrl.verifyToken , noticiaCtrl.createNoticia);
 router.get('/:id',authCtrl.verifyToken , noticiaCtrl.getNoticia);
 router.put('/:id',authCtrl.verifyToken , noticiaCtrl.editNoticia);

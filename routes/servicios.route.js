@@ -9,6 +9,7 @@ const authCtrl = require('../controllers/auth.controller');
 
 // definiendo rutas
 router.get('/',authCtrl.verifyToken , servicioCtrl.getServicios);
+router.get('/activos',authCtrl.verifyToken , servicioCtrl.getServiciosActivos);
 router.post('/',authCtrl.verifyToken , servicioCtrl.createServicio);
 router.get('/:id',authCtrl.verifyToken , servicioCtrl.getServicio);
 router.put('/:id',authCtrl.verifyToken , servicioCtrl.editServicio);
